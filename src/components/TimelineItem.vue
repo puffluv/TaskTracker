@@ -1,5 +1,5 @@
 <script setup>
-import { TrashIcon } from '@heroicons/vue/24/outline'
+import BaseSelect from './BaseSelect.vue'
 
 const props = defineProps(['timelineItem'])
 
@@ -15,20 +15,12 @@ const options = [
   { value: 2, label: 'Learn' },
   { value: 3, label: 'Work' },
 ]
+
+const selectedActivityId = 1
 </script>
 <template>
   <li class="relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4">
     <a href="#" v-bind:class="hourLinkClasses">{{ timelineItem.hour }}:00</a>
-    <div class="flex gap-2">
-      <button
-        class="rounded bg-gray-100 p-3 enabled:hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        <TrashIcon class="h-6" />
-      </button>
-      <select name="" id="" class="w-full truncate rounded bg-gray-100 py-1 px-2 text-xl">
-        <option disable selected value="">Chill</option>
-        <option v-for="{ value, label } in options" :key="value" :value="value">{{ label }}</option>
-      </select>
-    </div>
+    <BaseSelect :selected="selectedActivityId" :options="options" placeholder="Chill" />
   </li>
 </template>
